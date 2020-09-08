@@ -24,9 +24,8 @@ class Stack:
 
     def push(self, value):
         # self.size = len(self.storage) # Gets size of array BEFORE appending
-        # self.size += 1 # Corrects size to account for value being appended
+        self.size += 1 # Corrects size to account for value being appended
         # return self.storage.append(value)
-        self.size += 1
         return self.storage.add_to_tail(value)
 
     def pop(self):
