@@ -28,12 +28,14 @@ class Stack:
 
     def push(self, value):
         # self.size = len(self.storage) # Gets size of array BEFORE appending
+        # Permanently commented out above line after I learned while coding queue.py that it's unnecessary
         self.size += 1 # Corrects size to account for value being appended
         # return self.storage.append(value)
         return self.storage.add_to_tail(value)
 
     def pop(self):
         # self.size = len(self.storage) # Gets size of array BEFORE pop
+        # Permanently commented out above line after I learned while coding queue.py that it's unnecessary
         if self.size <= 0:
             return None
         else:
