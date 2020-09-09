@@ -72,24 +72,31 @@ class DoublyLinkedList:
     the old tail node's next pointer accordingly.
     """
     def add_to_tail(self, value):
-        print(f"Add to Tail (Value): {value}")
+        # print(f"Add to Tail (Value): {value}")
+
+        newnode = ListNode(value)
         if self.tail:
             current = self.tail
-            print(f"Add to Tail (Current): {current.value}")
-            # self.tail = ListNode(value, current)
-            x = ListNode(value, current)
-            print(f"Add to Tail (If Self Value): {x.value}")
-            # current.next = self.tail
-            current.next = x
-            print(f"Add to Tail (If Curr Next): {current.next.value}")
-            self.tail = x
+            # print(f"Add to Tail (Current): {current.value}")
+
+            self.tail = ListNode(value, current)
+            # print(f"Add to Tail (If Self Value): {self.tail.value}")
+
+            current.next = self.tail
+            # print(f"Add to Tail (If Curr Next): {current.next.value}")
+
+            # self.tail = x
+            # A lot of debugging to try to find out why the 6 won't add to tail for the delete test later
         else:
-            print(f"Add to Tail (Else Value): {value}")
-            self.head = ListNode(value)
-            self.tail = ListNode(value)
+            # print(f"Add to Tail (Else Value): {value}")
+            # self.head = ListNode(value)
+            # self.tail = ListNode(value)
+            self.head = newnode
+            self.tail = newnode # <-- I'm not sure why THIS is the fix to the bug that kept me up all night.
         self.length += 1
-        print("Add to Tail: ", end = "")
+        # print("Add to Tail: ", end = "")
         self.printlist()
+
             
     """
     Removes the List's current tail node, making the 
@@ -164,26 +171,17 @@ class DoublyLinkedList:
         if node.next:
             node.next.prev = node.prev
         else:
-            pass
-            # New tail?
-            # if self.tail is node:
-            #     self.tail = node.prev
-
+            # New tail
+            if self.tail is node:
+                self.tail = node.prev
         
         if node.prev:
             node.prev.next = node.next
         else:
-            pass
-            # New head?
-            # if self.head is node:
-            #     self.head = node.next
-
+            # New head
+            if self.head is node:
+                self.head = node.next
         
-        if self.head is node:
-            self.head = node.next
-
-        if self.tail is node:
-            self.tail = node.prev
         self.printlist()
         self.length -= 1
         
