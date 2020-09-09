@@ -42,8 +42,8 @@ class DoublyLinkedList:
             self.head = ListNode(value)
             self.tail = ListNode(value) # I had to add this line in to get test_list_remove_from_head to pass
         self.length += 1
-        print("Add to Head: ", end = "")
-        self.printlist()
+        # print("Add to Head: ", end = "")
+        # self.printlist()
         
     """
     Removes the List's current head node, making the
@@ -95,7 +95,7 @@ class DoublyLinkedList:
             self.tail = newnode # <-- I'm not sure why THIS is the fix to the bug that kept me up all night.
         self.length += 1
         # print("Add to Tail: ", end = "")
-        self.printlist()
+        # self.printlist()
 
             
     """
@@ -182,7 +182,7 @@ class DoublyLinkedList:
             if self.head is node:
                 self.head = node.next
         
-        self.printlist()
+        # self.printlist()
         self.length -= 1
         
 
