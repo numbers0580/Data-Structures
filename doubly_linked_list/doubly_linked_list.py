@@ -20,6 +20,13 @@ class DoublyLinkedList:
 
     def __len__(self):
         return self.length
+
+    def printlist(self):
+        current = self.head
+        while current:
+            print(f"{current.value}", end=" ")
+            current = current.next
+        print()
     
     """
     Wraps the given value in a ListNode and inserts it 
@@ -27,7 +34,7 @@ class DoublyLinkedList:
     the old head node's previous pointer accordingly.
     """
     def add_to_head(self, value):
-        if self.length > 0:
+        if self.head:
             current = self.head
             self.head = ListNode(value, None, current)
             current.prev = self.head
@@ -35,6 +42,8 @@ class DoublyLinkedList:
             self.head = ListNode(value)
             self.tail = ListNode(value) # I had to add this line in to get test_list_remove_from_head to pass
         self.length += 1
+        print("Add to Head: ", end = "")
+        self.printlist()
         
     """
     Removes the List's current head node, making the
@@ -42,7 +51,7 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_head(self):
-        if self.head is None:
+        if self.head is None and self.head is None:
             return None
         else:
             val = self.head.value
@@ -63,14 +72,24 @@ class DoublyLinkedList:
     the old tail node's next pointer accordingly.
     """
     def add_to_tail(self, value):
+        print(f"Add to Tail (Value): {value}")
         if self.tail:
             current = self.tail
-            self.tail = ListNode(value, current)
-            current.next = self.tail
+            print(f"Add to Tail (Current): {current.value}")
+            # self.tail = ListNode(value, current)
+            x = ListNode(value, current)
+            print(f"Add to Tail (If Self Value): {x.value}")
+            # current.next = self.tail
+            current.next = x
+            print(f"Add to Tail (If Curr Next): {current.next.value}")
+            self.tail = x
         else:
+            print(f"Add to Tail (Else Value): {value}")
             self.head = ListNode(value)
             self.tail = ListNode(value)
         self.length += 1
+        print("Add to Tail: ", end = "")
+        self.printlist()
             
     """
     Removes the List's current tail node, making the 
@@ -78,7 +97,7 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_tail(self):
-        if self.head is None:
+        if self.head is None and self.tail is None:
             return None
         else:
             val = self.tail.value
@@ -138,36 +157,34 @@ class DoublyLinkedList:
     order of the other elements of the List.
     """
     def delete(self, node):
-        # if self.head is None:
-        #     return None
-        # if node.next:
-        #     node.next.prev = node.prev
-        # else:
-        #     # New tail?
-        #     pass
+        self.printlist()
+        if self.head is None:
+            return None
 
-        
-        # if node.prev:
-        #     node.prev.next = node.next
-        # else:
-        #     # New head?
-        #     pass
-
-        
-        # if self.head is node:
-        #     self.head = node.next
-
-        # if self.tail is node:
-        #     self.tail = node.prev
-        # self.length -= 1
-        if node.prev:
-            node.prev.next = node.next
         if node.next:
             node.next.prev = node.prev
-        if node is self.head:
+        else:
+            pass
+            # New tail?
+            # if self.tail is node:
+            #     self.tail = node.prev
+
+        
+        if node.prev:
+            node.prev.next = node.next
+        else:
+            pass
+            # New head?
+            # if self.head is node:
+            #     self.head = node.next
+
+        
+        if self.head is node:
             self.head = node.next
-        if node is self.tail:
-                self.tail = node.prev
+
+        if self.tail is node:
+            self.tail = node.prev
+        self.printlist()
         self.length -= 1
         
 
