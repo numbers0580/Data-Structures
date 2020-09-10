@@ -40,7 +40,7 @@ class DoublyLinkedList:
             current.prev = self.head
         else:
             self.head = ListNode(value)
-            self.tail = ListNode(value) # I had to add this line in to get test_list_remove_from_head to pass
+            self.tail = self.head # I had to add this line in to get test_list_remove_from_head to pass
         self.length += 1
         # print("Add to Head: ", end = "")
         # self.printlist()
@@ -74,7 +74,7 @@ class DoublyLinkedList:
     def add_to_tail(self, value):
         # print(f"Add to Tail (Value): {value}")
 
-        newnode = ListNode(value)
+        # newnode = ListNode(value)
         if self.tail:
             current = self.tail
             # print(f"Add to Tail (Current): {current.value}")
@@ -89,10 +89,10 @@ class DoublyLinkedList:
             # A lot of debugging to try to find out why the 6 won't add to tail for the delete test later
         else:
             # print(f"Add to Tail (Else Value): {value}")
-            # self.head = ListNode(value)
-            # self.tail = ListNode(value)
-            self.head = newnode
-            self.tail = newnode # <-- I'm not sure why THIS is the fix to the bug that kept me up all night.
+            self.head = ListNode(value)
+            self.tail = self.head
+            # self.head = newnode
+            # self.tail = newnode # <-- I'm not sure why THIS is the fix to the bug that kept me up all night.
         self.length += 1
         # print("Add to Tail: ", end = "")
         # self.printlist()
@@ -164,7 +164,7 @@ class DoublyLinkedList:
     order of the other elements of the List.
     """
     def delete(self, node):
-        self.printlist()
+        # self.printlist()
         if self.head is None:
             return None
 
