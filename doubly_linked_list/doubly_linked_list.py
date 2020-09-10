@@ -21,12 +21,12 @@ class DoublyLinkedList:
     def __len__(self):
         return self.length
 
-    def printlist(self):
-        current = self.head
-        while current:
-            print(f"{current.value}", end=" ")
-            current = current.next
-        print()
+    # def printlist(self):
+    #     current = self.head
+    #     while current:
+    #         print(f"{current.value}", end=" ")
+    #         current = current.next
+    #     print()
     
     """
     Wraps the given value in a ListNode and inserts it 
