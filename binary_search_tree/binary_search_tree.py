@@ -34,25 +34,30 @@ class BSTNode:
     # False if it does not
     def contains(self, target):
         if target is self.value:
+            # Found it!
             return True
         else:
             if target < self.value:
                 # LEFT
                 if self.left is None:
+                    # End of line
                     return False
                 else:
+                    # Recursively call this function again
                     return self.left.contains(target)
             else:
                 #RIGHT
                 if self.right is None:
+                    # End of line
                     return False
                 else:
+                    # Recursively call this function again
                     return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
         # 1: Standard Loop Method
-        x = self
+        x = self # Store self in temporary holder to use in while-loop
         while x.right:
             # Haven't found maximum yet, increment and repeat
             x = x.right
@@ -69,9 +74,12 @@ class BSTNode:
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
+        # Call the function for current value
         fn(self.value)
+        # Search for next values and repeat
         if self.right:
             self.right.for_each(fn)
+        # This is getting crazy trying to imagine the near-infinite nested if-statements this could have if manually written out
         if self.left:
             self.left.for_each(fn)
 
